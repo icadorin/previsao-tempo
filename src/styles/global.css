@@ -1,0 +1,22 @@
+:root {
+  --text-primary: #000000;
+  --bg-primary: #EFF6FF;
+  --bg-secondary: #DBEAFE;
+  --bt-primary: #1f3a66;
+  --text-secondary: #1f3a66;
+}
+
+[data-theme='dark'] {
+  --text-primary: #F3F4F6;
+  --bg-primary: #1E293B;
+  --bg-secondary: #0F172A;
+  --bt-primary: #b100a8;
+  --text-secondary: #F3F4F6;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(to bottom right, var(--bg-primary), var(--bg-secondary));
+  min-height: 100vh;
+}
