@@ -1,21 +1,41 @@
+.headerWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.toggleButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-tertiary);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
 .headerContainer {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   margin: 2rem;
-}
-
-.toggleButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--text-secondary);
-  color: var(--bg-primary);
-  border: none;
-  border-radius: 0.2rem;
-  width: 50px;
-  height: 50px;
+  padding-top: 3rem;
 }
 
 .mainContainer {
@@ -23,78 +43,122 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
 }
 
-.inputWrapper {
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.searchInputWrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 1rem;
-  border: 1px solid #000000;
-  border-radius: 1px;
-  width: 230px;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
 }
 
 .searchIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
+  position: absolute;
+  left: 12px;
+  color: var(--text-primary);
   height: 18px;
   width: 18px;
 }
 
 .inputField {
   outline: none;
-  border: none;
-  text-align: center;
-  color: #000000;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
   background-color: transparent;
-  height: 20px;
-  width: 200px;
+  height: 45px;
+  width: 100%;
+  padding: 0 45px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.inputField:focus {
+
+  box-shadow: 0 0 0 2px rgba(var(--bt-primary-rgb), 0.3);
+  transform: scale(1.02);
+}
+
+.inputField:focus~.searchIcon {
+  color: var(--bt-primary);
+  transform: scale(1.1);
+}
+
+.inputField:focus~.geolocationButton {
+  color: var(--text-primary);
+  background-color: transparent;
+  transform: translateY(-1px);
+  border: 1px solid var(--bt-primary);
 }
 
 .inputField::placeholder {
-  color: #5c5c5c;
+  color: var(--loading-text);
   opacity: 1;
 }
 
-.divButton {
-  margin-top: 1rem;
+.geolocationButton {
+  position: absolute;
+  right: 8px;
+  background-color: var(--bt-primary);
+  color: white;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  transition: all 0.2s ease;
+}
+
+.geolocationText {
+  display: none;
+}
+
+.geolocationButton:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 .searchButton {
-  width: 300px;
-  margin-top: 1rem;
+  width: 100%;
+  max-width: 400px;
   background-color: var(--bt-primary);
-  color: #ffffff;
-  padding: 0.5rem;
-  font-size: larger;
+  color: white;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-weight: bold;
   border: none;
-  border-radius: 2px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.geolocationButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--text-secondary);
-  color: var(--bg-primary);
-  width: 40px;
-  height: 40px;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 0.2rem;
-  display: flex;
-  align-items: center;
-}
-
-.toggleButton:hover,
-.geolocationButton:hover,
 .searchButton:hover {
   opacity: 0.9;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 480px) {
+  .geolocationButton {
+    padding: 8px 12px;
+  }
+
+  .geolocationText {
+    display: inline;
+    font-size: 0.8rem;
+  }
 }

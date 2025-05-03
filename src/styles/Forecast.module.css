@@ -1,27 +1,82 @@
 .forecastContainer {
-  margin: 2rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.8);
+  margin: 2rem auto;
+  padding: 1.5rem;
+  max-width: 1200px;
+  background: var(--tpbg-primary);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--bd-primary);
+}
+
+.nextDays {
+  color: var(--text-primary);
 }
 
 .daysGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .dayCard {
   text-align: center;
-  padding: 0.5rem;
-  background: white;
-  border-radius: 0.2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--bd-primary);
 }
 
 .dayCard img {
   width: 50px;
   height: 50px;
+  margin: 0.75rem auto;
+  padding: 8px;
+  background: var(--bt-primary);
+  border-radius: 50%;
+}
+
+.dayCard:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dayCard h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.dayCard p {
+  color: var(--text-primary);
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.dayCard .tempMax {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.dayCard .tempMin {
+  font-weight: 400;
+  color: var(--loading-text);
+}
+
+.dayCard img {
+  width: 50px;
+  height: 50px;
+  margin: 0.5rem auto;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 768px) {
+  .daysGrid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+
+  .dayCard {
+    padding: 0.75rem;
+  }
 }

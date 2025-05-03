@@ -1,5 +1,7 @@
 import styles from '../styles/WeatherCard.module.css'
 import { WeatherData } from '../hooks/weather'
+import { FiDroplet, FiWind, FiThermometer } from 'react-icons/fi'
+import { translateWeatherDescription } from '../utils/weatherTranslations';
 
 interface WeatherCardProps {
   data: WeatherData | null
@@ -12,19 +14,50 @@ export default function WeatherCard({ data, loading }: WeatherCardProps) {
 
   return (
     <div className={styles.card}>
-      <h2>{data.name}</h2>
-      <div className={styles.mainInfo}>
-        <img
-          src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-          alt={data.weather[0].description}
-        />
-        <span>{Math.round(data.main.temp)}°C</span>
+      <div className={styles.header}>
+        <h2 className={styles.cityName}>{data.name}</h2>
+        <p className={styles.weatherDescription}>
+          {translateWeatherDescription(data.weather[0].description)}
+        </p>
       </div>
-      <p className={styles.description}>{data.weather[0].description}</p>
-      <div className={styles.details}>
-        <div>Sensação: {Math.round(data.main.feels_like)}°C</div>
-        <div>Vento: {data.wind.speed} m/s</div>
-        <div>Umidade: {data.main.humidity}%</div>
+
+      <div className={styles.weatherMain}>
+        <div className={styles.temperatureContainer}>
+          <span className={styles.temperature}>{Math.round(data.main.temp)}°C</span>
+          <div className={styles.weatherIconContainer}>
+            <img
+              src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`}
+              alt={data.weather[0].description}
+              className={styles.weatherIcon}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.detailsContainer}>
+        <div className={styles.detailCard}>
+          <FiThermometer className={styles.detailIcon} />
+          <div>
+            <span className={styles.detailLabel}>Sensação</span>
+            <span className={styles.detailValue}>{Math.round(data.main.feels_like)}°C</span>
+          </div>
+        </div>
+
+        <div className={styles.detailCard}>
+          <FiWind className={styles.detailIcon} />
+          <div>
+            <span className={styles.detailLabel}>Vento</span>
+            <span className={styles.detailValue}>{data.wind.speed} m/s</span>
+          </div>
+        </div>
+
+        <div className={styles.detailCard}>
+          <FiDroplet className={styles.detailIcon} />
+          <div>
+            <span className={styles.detailLabel}>Umidade</span>
+            <span className={styles.detailValue}>{data.main.humidity}%</span>
+          </div>
+        </div>
       </div>
     </div>
   )

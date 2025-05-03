@@ -39,7 +39,7 @@ export default function Forecast({ data }: ForecastProps) {
 
   return (
     <div className={styles.forecastContainer}>
-      <h3>Próximos Dias</h3>
+      <h3 className={styles.nextDays}>Próximos Dias</h3>
       <div className={styles.daysGrid}>
         {dailyForecast.map((day) => {
           const date = new Date(day.dt * 1000);
