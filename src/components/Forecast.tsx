@@ -8,8 +8,6 @@ interface ForecastProps {
 export default function Forecast({ data }: ForecastProps) {
   if (!data) return null;
 
-  // console.log(data);
-
   const forecastsByDay = data.list.reduce<Record<string, typeof data.list[0]>>((acc, forecast) => {
     const date = new Date(forecast.dt * 1000);
 
@@ -17,14 +15,10 @@ export default function Forecast({ data }: ForecastProps) {
       timeZone: 'America/Sao_Paulo'
     });
 
-    // console.log(dayKey);
-
     const hour = date.toLocaleTimeString('pt-BR', {
       hour: '2-digit',
       timeZone: 'America/Sao_Paulo'
     });
-
-    // console.log(hour);
 
     if (!acc[dayKey] || hour.includes('12')) {
       acc[dayKey] = forecast;
