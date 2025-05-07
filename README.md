@@ -1,5 +1,10 @@
 # 🌦️ Previsão do Tempo
 
+## 🌐 Acesso
+ - (Vercel): [ https://previsao-tempo-ic.vercel.app ].
+
+## 💻 Prévia da aplicação
+
 <img src="./src/assets/weather-preview.png" alt="Preview" width="400"/>
 
 ## ✨ Funcionalidades Principais
@@ -19,6 +24,9 @@
  - TypeScript
  - Vite
  - OpenWeather API
+
+## ⚙️ Variáveis de ambiente
+ - Necessário configurar uma key da OpenWeather API e adicionar as variáveis de ambiente
 
 ## 🚀 Como Executar
 
