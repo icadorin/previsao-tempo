@@ -1,16 +1,34 @@
-import styles from '../styles/WeatherCard.module.css'
-import { WeatherData } from '../hooks/weather'
-import { FiDroplet, FiWind, FiThermometer } from 'react-icons/fi'
+import styles from '../styles/WeatherCard.module.css';
+import { WeatherData } from '../hooks/weather';
+import { FiDroplet, FiWind, FiThermometer } from 'react-icons/fi';
 import { translateWeatherDescription } from '../utils/weatherTranslations';
+import { useEffect } from 'react';
 
 interface WeatherCardProps {
-  data: WeatherData | null
-  loading: boolean
+  data: WeatherData | null;
+  loading: boolean;
 }
 
 export default function WeatherCard({ data, loading }: WeatherCardProps) {
-  if (loading) return <div className={styles.loading}>Carregando...</div>
-  if (!data) return null
+  useEffect(() => {
+    if (data) {
+      console.log('WeatherCard data:', data);
+      console.log(
+        'Data completa:',
+        new Date(data.dt * 1000).toLocaleString('pt-BR'),
+      );
+      console.log('Temperatura atual:', data.main.temp);
+      console.log('Cidade:', data.name);
+    }
+  }, [data]);
+
+  if (loading) return <div className={styles.loading}>Carregando...</div>;
+  if (!data) return null;
+
+  if (!data.main || !data.weather || data.weather.length === 0) {
+    console.error('Dados inválidos no WeatherCard:', data);
+    return <div className={styles.error}>Dados meteorológicos inválidos</div>;
+  }
 
   return (
     <div className={styles.card}>
@@ -23,7 +41,9 @@ export default function WeatherCard({ data, loading }: WeatherCardProps) {
 
       <div className={styles.weatherMain}>
         <div className={styles.temperatureContainer}>
-          <span className={styles.temperature}>{Math.round(data.main.temp)}°C</span>
+          <span className={styles.temperature}>
+            {Math.round(data.main.temp)}°C
+          </span>
           <div className={styles.weatherIconContainer}>
             <img
               src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`}
@@ -39,7 +59,9 @@ export default function WeatherCard({ data, loading }: WeatherCardProps) {
           <FiThermometer className={styles.detailIcon} />
           <div>
             <span className={styles.detailLabel}>Sensação</span>
-            <span className={styles.detailValue}>{Math.round(data.main.feels_like)}°C</span>
+            <span className={styles.detailValue}>
+              {Math.round(data.main.feels_like)}°C
+            </span>
           </div>
         </div>
 
@@ -60,5 +82,5 @@ export default function WeatherCard({ data, loading }: WeatherCardProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

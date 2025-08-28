@@ -1,73 +1,77 @@
-import { FiSearch, FiMapPin, FiSun, FiMoon, FiLoader } from 'react-icons/fi'
-import styles from '../styles/Header.module.css'
-import { useTheme } from './ThemeContext'
-import { useState, useEffect } from 'react'
+import { FiSearch, FiMapPin, FiSun, FiMoon, FiLoader } from 'react-icons/fi';
+import styles from '../styles/Header.module.css';
+import { useTheme } from './ThemeContext';
+import { useState, useEffect } from 'react';
 
 interface SearchBarProps {
-  onSearch: (query: string) => void
-  currentLocation?: string
+  onSearch: (query: string) => void;
+  currentLocation?: string;
 }
 
-export default function SearchBar({ onSearch, currentLocation }: SearchBarProps) {
-  const { isDark, toggleTheme } = useTheme()
-  const [input, setInput] = useState('')
-  const [isGeolocating, setIsGeolocating] = useState(false)
-  const [lastSearchType, setLastSearchType] = useState<'manual' | 'geolocation'>('manual')
+export default function SearchBar({
+  onSearch,
+  currentLocation,
+}: SearchBarProps) {
+  const { isDark, toggleTheme } = useTheme();
+  const [input, setInput] = useState('');
+  const [isGeolocating, setIsGeolocating] = useState(false);
+  const [lastSearchType, setLastSearchType] = useState<
+    'manual' | 'geolocation'
+  >('manual');
 
   const handleSearch = () => {
     if (input.trim()) {
-      setLastSearchType('manual')
-      onSearch(input.trim())
+      setLastSearchType('manual');
+      onSearch(input.trim());
     }
-  }
+  };
 
   const handleGeolocation = async () => {
     if (!navigator.geolocation) {
-      alert('Seu navegador não suporta geolocalização ou está bloqueada.')
-      return
+      alert('Seu navegador não suporta geolocalização ou está bloqueada.');
+      return;
     }
 
-    setIsGeolocating(true)
+    setIsGeolocating(true);
 
     try {
-      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(
-          resolve,
-          reject,
-          {
+      const position = await new Promise<GeolocationPosition>(
+        (resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
             enableHighAccuracy: true,
             timeout: 10000,
-            maximumAge: 0
-          }
-        )
-      })
+            maximumAge: 0,
+          });
+        },
+      );
 
-      const { latitude, longitude } = position.coords
-      setLastSearchType('geolocation')
-      onSearch(`${latitude},${longitude}`)
+      const { latitude, longitude } = position.coords;
+      setLastSearchType('geolocation');
+      onSearch(`${latitude},${longitude}`);
 
-      setInput('')
-
+      setInput('');
     } catch (error: any) {
-      let errorMessage = 'Não foi possível obter sua localização.'
+      let errorMessage = 'Não foi possível obter sua localização.';
 
       if (error.code === error.PERMISSION_DENIED) {
-        errorMessage = 'Permissão de localização negada. Por favor, habilite nas configurações do seu navegador.'
+        errorMessage =
+          'Permissão de localização negada. Por favor, habilite nas configurações do seu navegador.';
       } else if (error.code === error.TIMEOUT) {
-        errorMessage = 'Tempo esgotado para obter a localização. Verifique sua conexão.'
+        errorMessage =
+          'Tempo esgotado para obter a localização. Verifique sua conexão.';
       }
 
-      alert(errorMessage)
+      alert(errorMessage);
     } finally {
-      setIsGeolocating(false)
+      setIsGeolocating(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (currentLocation && lastSearchType === 'manual') {
-      setInput(currentLocation)
+      setInput(currentLocation);
     }
-  }, [currentLocation, lastSearchType])
+  }, [currentLocation, lastSearchType]);
 
   return (
     <div className={styles.headerWrapper}>
@@ -110,7 +114,9 @@ export default function SearchBar({ onSearch, currentLocation }: SearchBarProps)
                   <>
                     <FiMapPin size={15} />
                     <span className={styles.geolocationText}>
-                      {lastSearchType === 'geolocation' ? 'Atualizar' : 'Localização'}
+                      {lastSearchType === 'geolocation'
+                        ? 'Atualizar'
+                        : 'Localização'}
                     </span>
                   </>
                 )}
@@ -128,5 +134,5 @@ export default function SearchBar({ onSearch, currentLocation }: SearchBarProps)
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { WeatherData, ForecastData } from '../hooks/weather'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { WeatherData, ForecastData } from '../hooks/weather';
 
-const API_KEY = import.meta.env.VITE_WEATHER_API_KEY
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 if (!API_KEY) {
-  console.error("Variáveis de ambiente:", import.meta.env);
-  throw new Error("Chave de API não configurada.");
+  console.error('Variáveis de ambiente:', import.meta.env);
+  throw new Error('Chave de API não configurada.');
 }
 
 export default function useWeather(location: string) {
@@ -35,7 +35,7 @@ export default function useWeather(location: string) {
 
         const [weatherResponse, forecastResponse] = await Promise.all([
           axios.get<WeatherData>(weatherUrl),
-          axios.get<ForecastData>(forecastUrl)
+          axios.get<ForecastData>(forecastUrl),
         ]);
 
         setWeatherData(weatherResponse.data);
