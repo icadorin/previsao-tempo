@@ -43,8 +43,8 @@ export default function Forecast({ data }: ForecastProps) {
 
   console.log('Forecasts by day:', forecastsByDay);
 
-  const dailyForecast = Object.entries(forecastsByDay)
-    .map(([day, forecasts]) => {
+  const dailyForecast = Object.values(forecastsByDay)
+    .map((forecasts) => {
       const noonForecast = forecasts.find((forecast) => {
         const hour = new Date(forecast.dt * 1000).getHours();
         return hour >= 11 && hour <= 13;

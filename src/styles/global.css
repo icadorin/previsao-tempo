@@ -1,36 +1,40 @@
 :root {
-  --text-primary: #1E293B;
-  --text-secondary: #FFFFFF;
-  --bg-primary: #F8FAFC;
-  --bg-secondary: #E2E8F0;
-  --bt-primary: #1E293B;
-  --bt-primary-dark: #2563EB;
-  --bd-primary: #CBD5E1;
-  --tpbg-primary: #FFFFFF;
-  --detail-icon: #3B82F6;
-  --loading-text: #64748B;
-  --bg-tertiary: #1E293B;
-  --tpbg-secondary: #E2E8F0;
+  --text-primary: #1e293b;
+  --text-secondary: #ffffff;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #e2e8f0;
+  --bt-primary: #1e293b;
+  --bt-primary-dark: #2563eb;
+  --bd-primary: #cbd5e1;
+  --tpbg-primary: #ffffff;
+  --detail-icon: #3b82f6;
+  --loading-text: #64748b;
+  --bg-tertiary: #1e293b;
+  --tpbg-secondary: #e2e8f0;
 }
 
 [data-theme='dark'] {
-  --text-primary: #F1F5F9;
-  --text-secondary: #FFFFFF;
-  --bg-primary: #0F172A;
-  --bg-secondary: #1E293B;
+  --text-primary: #f1f5f9;
+  --text-secondary: #ffffff;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
   --bt-primary: #154561;
-  --bt-primary-dark: #6366F1;
+  --bt-primary-dark: #6366f1;
   --bd-primary: #334155;
-  --tpbg-primary: #1E293B;
-  --detail-icon: #818CF8;
-  --loading-text: #94A3B8;
-  --bg-tertiary: #F1F5F9;
-  --tpbg-secondary: #1E293B;
+  --tpbg-primary: #1e293b;
+  --detail-icon: #818cf8;
+  --loading-text: #94a3b8;
+  --bg-tertiary: #f1f5f9;
+  --tpbg-secondary: #1e293b;
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', system-ui, sans-serif;
-  background: linear-gradient(to bottom right, var(--bg-primary), var(--bg-secondary));
+  background: linear-gradient(
+    to bottom right,
+    var(--bg-primary),
+    var(--bg-secondary)
+  );
   min-height: 100vh;
 }
