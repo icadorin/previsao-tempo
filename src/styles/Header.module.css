@@ -59,7 +59,7 @@
   align-items: center;
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 430px;
 }
 
 .searchIcon {
@@ -84,17 +84,16 @@
 }
 
 .inputField:focus {
-
   box-shadow: 0 0 0 2px rgba(var(--bt-primary-rgb), 0.3);
   transform: scale(1.02);
 }
 
-.inputField:focus~.searchIcon {
+.inputField:focus ~ .searchIcon {
   color: var(--bt-primary);
   transform: scale(1.1);
 }
 
-.inputField:focus~.geolocationButton {
+.inputField:focus ~ .geolocationButton {
   color: var(--text-primary);
   background-color: transparent;
   transform: translateY(-1px);
@@ -133,7 +132,7 @@
 
 .searchButton {
   width: 100%;
-  max-width: 400px;
+  max-width: 430px;
   background-color: var(--bt-primary);
   color: white;
   padding: 0.9rem;
@@ -150,6 +149,12 @@
   opacity: 0.9;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 640px) {
+  .headerContainer {
+    margin: 1rem;
+  }
 }
 
 @media (min-width: 480px) {

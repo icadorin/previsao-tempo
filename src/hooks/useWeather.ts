@@ -26,12 +26,20 @@ export default function useWeather(location: string) {
         const isCoordinateSearch = location.includes(',');
 
         const weatherUrl = isCoordinateSearch
-          ? `https://api.openweathermap.org/data/2.5/weather?lat=${location.split(',')[0]}&lon=${location.split(',')[1]}&units=metric&appid=${API_KEY}`
-          : `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${API_KEY}`;
+          ? `https://api.openweathermap.org/data/2.5/weather?lat=${
+              location.split(',')[0]
+            }&lon=${location.split(',')[1]}&units=metric&appid=${API_KEY}`
+          : `https://api.openweathermap.org/data/2.5/weather?q=${
+              location
+            }&units=metric&appid=${API_KEY}`;
 
         const forecastUrl = isCoordinateSearch
-          ? `https://api.openweathermap.org/data/2.5/forecast?lat=${location.split(',')[0]}&lon=${location.split(',')[1]}&units=metric&appid=${API_KEY}`
-          : `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`;
+          ? `https://api.openweathermap.org/data/2.5/forecast?lat=${
+              location.split(',')[0]
+            }&lon=${location.split(',')[1]}&units=metric&appid=${API_KEY}`
+          : `https://api.openweathermap.org/data/2.5/forecast?q=${
+              location
+            }&units=metric&appid=${API_KEY}`;
 
         const [weatherResponse, forecastResponse] = await Promise.all([
           axios.get<WeatherData>(weatherUrl),

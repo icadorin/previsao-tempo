@@ -10,22 +10,26 @@
 
 .nextDays {
   color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .daysGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1.5rem;
+  text-align: center;
   margin-top: 1.5rem;
 }
 
 .dayCard {
+  display: inline-block;
   text-align: center;
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   border: 1px solid var(--bd-primary);
+  min-width: 140px;
+  margin: 0 0.75rem 1.5rem 0.75rem;
+  vertical-align: top;
 }
 
 .dayCard img {
@@ -39,44 +43,124 @@
 
 .dayCard:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.dayCard h3 {
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+  transform: translateY(-2px);
 }
 
 .dayCard p {
-  color: var(--text-primary);
   margin: 0.3rem 0;
   font-size: 0.9rem;
 }
 
-.dayCard .tempMax {
-  font-weight: 600;
+.weekday {
   color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.dayCard .tempMin {
-  font-weight: 400;
+.dayMonth {
   color: var(--loading-text);
-}
-
-.dayCard img {
-  width: 50px;
-  height: 50px;
-  margin: 0.5rem auto;
-  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+  font-weight: 400;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 @media (max-width: 768px) {
+  .forecastContainer {
+    margin: 1.5rem auto;
+    padding: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+
   .daysGrid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 1rem;
+    justify-content: space-around;
   }
 
   .dayCard {
     padding: 0.75rem;
+    min-width: 120px;
+  }
+
+  .dayCard p {
+    font-size: 0.85rem;
+  }
+
+  .dayCard img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1200px) {
+  .forecastContainer {
+    margin: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .forecastContainer {
+    margin: 1rem;
+    padding: 1rem;
+    max-width: none;
+  }
+
+  .nextDays {
+    font-size: 1.1rem;
+  }
+
+  .daysGrid {
+    gap: 0.75rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+
+  .dayCard {
+    padding: 0.6rem;
+    min-width: 110px;
+    flex: 1;
+    max-width: 130px;
+  }
+
+  .dayCard p {
+    font-size: 0.8rem;
+    margin: 0.25rem 0;
+  }
+
+  .dayCard img {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 400px) {
+  .daysGrid {
+    gap: 0.5rem;
+  }
+
+  .dayCard {
+    min-width: 100px;
+    max-width: 110px;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .dayCard {
+    min-width: 90px;
+    max-width: 100px;
+    padding: 0.4rem;
+  }
+
+  .dayCard p {
+    font-size: 0.75rem;
+  }
+
+  .dayCard img {
+    width: 35px;
+    height: 35px;
   }
 }
